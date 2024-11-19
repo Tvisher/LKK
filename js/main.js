@@ -16,13 +16,18 @@ const aboutSlider = new Swiper('.about-section__slider', {
 const tasksSlider = new Swiper('.tasks-event__slider', {
     slidesPerView: 'auto',
     speed: 900,
-    spaceBetween: 30,
+    spaceBetween: 10,
     pagination: {
         el: '.swiper-pagination',
         type: 'bullets',
     },
     autoplay: {
         delay: 5000,
+    },
+    breakpoints: {
+        576: {
+            spaceBetween: 30
+        }
     },
 });
 
@@ -57,7 +62,17 @@ document.addEventListener('click', (e) => {
     const target = e.target;
     if (target.closest('[data-open-modal]')) {
         document.querySelector('.modal-ex').classList.add('show')
+    }
 
+    if (target.closest('.bug-menu')) {
+        document.querySelector('.mob-menu').classList.add('show')
+    }
+
+    if (target.closest('.nav-item')) {
+        document.querySelector('.mob-menu').classList.remove('show')
+    }
+    if (target.closest('.mob-menu.show') && !target.closest('.header__nav')) {
+        document.querySelector('.mob-menu').classList.remove('show')
     }
 })
 

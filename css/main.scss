@@ -109,6 +109,51 @@ body {
   z-index: 2;
 }
 
+.bug-menu {
+  width: 34px;
+  height: 34px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+.mob-menu {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+  &.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  position: relative;
+  display: none;
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 10;
+  .header__nav {
+    padding: 20px 0;
+    flex-direction: column;
+    width: 100%;
+    background-color: #fff;
+    .nav-item {
+      color: #333;
+    }
+  }
+  .mob-menu-close {
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+}
+
 .main-screen__block {
   width: 100%;
   background-image: url(../img/main-screen-bg.jpg);
@@ -143,7 +188,7 @@ body {
       width: 100%;
       height: 100%;
       object-fit: contain;
-      object-position: center;
+      object-position: left bottom;
     }
   }
 }
@@ -181,11 +226,33 @@ body {
     gap: 30px;
     align-items: center;
     &::before {
+      flex-shrink: 0;
       display: block;
       content: "";
       width: 98px;
       height: 93px;
       background-image: url(../img/red-book.svg);
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+  }
+  .red-selection {
+    display: inline-block;
+    color: #fff;
+    padding: 10px;
+    position: relative;
+    &::before {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -45%);
+      width: 110%;
+      height: 110%;
+      border-radius: 117px;
+      background: #ef2b2d;
+      content: "";
+      z-index: -1;
     }
   }
 }
@@ -763,9 +830,10 @@ body {
   justify-content: center;
   height: 76px;
   img {
-    width: auto;
+    width: 100%;
     height: 100%;
     object-position: center;
+    object-fit: contain;
   }
 }
 
@@ -936,7 +1004,7 @@ body {
   border-radius: 20px;
   background: #f7f7f7;
   height: auto;
-  width: 100%;
+  width: calc(60% - 60px);
 }
 
 .contacts {
@@ -1134,7 +1202,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.6);
   z-index: 10;
   padding-top: 100px;
   opacity: 0;
@@ -1209,7 +1277,7 @@ body {
   position: absolute;
   top: 20px;
   right: 20px;
-  z-index: 2;
+  z-index: 3;
   cursor: pointer;
   svg {
     width: 100%;
@@ -1271,5 +1339,481 @@ body {
   color: #333;
   .lax-img {
     height: 106px;
+  }
+}
+
+.mob-action-btn {
+  display: none;
+  color: #fff;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 150%; /* 24px */
+  cursor: pointer;
+  margin-top: 33px;
+  text-align: center;
+  color: #fff;
+  width: 100%;
+  padding: 14px;
+  border-radius: 76px;
+  border: 2px solid #ef2b2d;
+  box-shadow: 0px 24px 40px 0px rgba(102, 23, 27, 0.1);
+  position: relative;
+  &::before {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    content: "";
+    width: 40px;
+    height: 40px;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='40' height='40' viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='40' height='40' rx='20' fill='%23EF2B2D'/%3e%3cpath d='M22.5 17L7 17L7 23L22.5 23L14.4286 31L21.8571 31L33 20L21.8571 9L14.4286 9L22.5 17Z' fill='white'/%3e%3c/svg%3e ");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+}
+.mob-hidden {
+  display: none;
+}
+
+@media (max-width: 1300px) {
+  .header__nav {
+    gap: 30px;
+  }
+}
+
+@media (max-width: 1180px) {
+  .bug-menu {
+    cursor: pointer;
+    display: flex;
+  }
+  .mob-menu {
+    display: block;
+    .header__nav {
+      display: flex;
+    }
+  }
+  .footer__wrapper {
+    flex-wrap: wrap;
+    gap: 20px;
+    .footer__center {
+      width: 100%;
+    }
+  }
+  .mob-hidden {
+    display: flex !important;
+  }
+  .footer__right .action-btn,
+  .footer__from {
+    display: none;
+  }
+
+  .contacts__wrapper {
+    flex-direction: column;
+  }
+  .contacts__content {
+    width: 100%;
+  }
+  .contacts__map {
+    height: 40vw;
+    width: 100%;
+  }
+  .sponsors__list {
+    justify-content: center;
+  }
+  .sponsor {
+    width: calc(50% - 15px);
+  }
+  .instruction-item {
+    width: calc(50% - 10px);
+  }
+  .header__nav {
+    display: none;
+  }
+  .nomination-item {
+    width: 50%;
+    border-radius: 26px;
+    border: 1px solid #838383 !important;
+  }
+  .nominations__list::before,
+  .nominations__list::after,
+  .nomination-item:nth-child(1)::after,
+  .nomination-item:nth-child(3)::after {
+    display: none;
+  }
+
+  .header__wrapper .action-btn {
+    display: none;
+  }
+  .mob-action-btn {
+    display: block;
+  }
+}
+
+@media (max-width: 998px) {
+  .instruction-item {
+    width: 100%;
+  }
+  .title-section {
+    font-size: 7.1vw;
+    margin-bottom: 10px;
+  }
+  .title-section:first-child::before {
+    width: 10vw;
+    height: 10vw;
+  }
+  .main-screen__descr {
+    margin: 40px 0;
+  }
+  .main-screen__plate {
+    width: 100%;
+    text-align: center;
+  }
+  .schedule__wrapper {
+    background-image: none;
+  }
+  .schedule__footer,
+  .schedule__descr {
+    text-align: left;
+  }
+  .schedule__item {
+    margin-bottom: 40px;
+    align-items: flex-start;
+    text-align: left;
+    padding-left: 78px;
+    position: relative;
+    &::before {
+      left: 0;
+      top: 10px;
+      position: absolute;
+      width: 58px;
+      height: 58px;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='58' height='58' viewBox='0 0 58 58' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cg filter='url(%23filter0_b_2857_2443)'%3e%3crect width='58' height='58' rx='29' fill='%23EF2B2D'/%3e%3cg clip-path='url(%23clip0_2857_2443)'%3e%3cpath d='M20.5 45.5V31.3056C20.5 31.1031 20.6642 30.9389 20.8667 30.9389H38.4559C38.7686 30.9389 38.9378 30.5725 38.7349 30.3345L31.9437 22.3641C31.8309 22.2318 31.8266 22.0384 31.9334 21.9011L38.7894 13.0919C38.9768 12.851 38.8052 12.5 38.5 12.5H20.8667C20.6642 12.5 20.5 12.6642 20.5 12.8667V27.6001' stroke='white' stroke-width='1.5'/%3e%3c/g%3e%3c/g%3e%3cdefs%3e%3cfilter id='filter0_b_2857_2443' x='-2' y='-2' width='62' height='62' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3e%3cfeFlood flood-opacity='0' result='BackgroundImageFix'/%3e%3cfeGaussianBlur in='BackgroundImageFix' stdDeviation='1'/%3e%3cfeComposite in2='SourceAlpha' operator='in' result='effect1_backgroundBlur_2857_2443'/%3e%3cfeBlend mode='normal' in='SourceGraphic' in2='effect1_backgroundBlur_2857_2443' result='shape'/%3e%3c/filter%3e%3cclipPath id='clip0_2857_2443'%3e%3crect width='35' height='35' fill='white' transform='translate(11.5 11.5)'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e ");
+      content: "";
+      display: block;
+      flex-shrink: 0;
+    }
+  }
+  .price-section__wrapper {
+    flex-direction: column;
+  }
+  .price-item {
+    padding: 30px;
+  }
+  .faq__item {
+    padding: 20px;
+    padding-right: 60px;
+    .item__head {
+      font-size: 28px;
+    }
+  }
+  .faq__item::before,
+  .faq__item::after {
+    right: 20px;
+  }
+  .target-event__right {
+    font-size: 20px;
+  }
+  .target-event__wrapper .ico {
+    display: none;
+  }
+  .target-event__wrapper {
+    flex-direction: column;
+    gap: 0;
+  }
+  .instruction .section-title {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    background-size: auto 200px;
+  }
+  .footer__wrapper .footer__center {
+    flex-direction: column;
+  }
+  .about-section,
+  .target-event,
+  .tasks-event,
+  .nominations,
+  .schedule,
+  .lax-section,
+  .instruction,
+  .jury-section,
+  .sponsors,
+  .price-section,
+  .faq,
+  .contacts {
+    padding: 60px 0;
+  }
+  .price-item__value {
+    font-size: 40px;
+  }
+  .price-item__content {
+    gap: 10px;
+  }
+  .price-item__name {
+    font-size: 28px;
+  }
+  .price-item__submit {
+    width: 100%;
+  }
+  .price-item__field {
+    padding: 15px;
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+  .sponsor {
+    width: 100%;
+    font-size: 14px;
+    padding: 20px;
+  }
+  .nomination-item {
+    width: 100%;
+    min-height: inherit;
+  }
+  .nomination-item__ico,
+  .nominations-footer__ico {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 15px;
+  }
+  .nomination-item__ico img,
+  .nomination-item__ico svg,
+  .nominations-footer__ico img,
+  .nominations-footer__ico svg {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 576px) {
+  .modal-ex {
+    padding: 20px;
+    padding-top: 100px;
+  }
+  // .jury-section__slider {
+  //   margin-right: -10px;
+  //   margin-left: -10px;
+  //   width: auto;
+  //   padding-left: 10px;
+  // }
+  .ico-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .socials {
+    margin-top: 20px;
+  }
+  .footer__left {
+    width: 100%;
+  }
+  .modal-ex__content {
+    padding: 20px;
+  }
+  .modal-ex__title {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+  .form-field,
+  .area {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  .modal-ex__content .action-btn {
+    width: 100%;
+  }
+  .instruction .action-btn {
+    margin-top: 20px;
+  }
+  .main-screen__block::after {
+    display: block;
+  }
+  .contacts__title {
+    font-size: 18px;
+  }
+  .contacts__descr {
+    font-size: 14px;
+  }
+  .contacts__block {
+    padding: 10px 14px;
+    width: 100%;
+    margin-top: 20px;
+  }
+  .contacts__wrapper {
+    gap: 20px;
+  }
+  .block__image {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+  }
+  .block__name {
+    font-size: 18px;
+  }
+  .block__email,
+  .block__tel {
+    font-size: 12px !important;
+  }
+  .faq__item .item__head {
+    font-size: 18px;
+  }
+  .faq__item .item__body {
+    font-size: 14px;
+  }
+  .instruction-item__num {
+    font-size: 40px;
+  }
+  .instruction-item {
+    padding: 20px;
+    gap: 22px;
+    min-height: inherit;
+  }
+  .jury-item {
+    width: 80vw;
+  }
+  .jury-item__name {
+    font-size: 18px;
+  }
+  .jury-item__descr {
+    font-size: 14px;
+  }
+  .jury-item__image {
+    height: 80vw;
+  }
+  .lax-section__red,
+  .lax-section__dark {
+    font-size: 53px;
+    .lax-el {
+      gap: 20px;
+    }
+    .lax-img {
+      height: 108px;
+    }
+  }
+  .lax-section__dark .lax-img {
+    height: 48px;
+  }
+  .schedule__subtitle {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .schedule__descr {
+    font-size: 14px;
+  }
+  .nominations-footer .section-title {
+    font-size: 22px;
+  }
+  .nominations-footer {
+    padding: 20px;
+  }
+  .nominations-footer__ico {
+    margin-bottom: 0 !important;
+  }
+  .nominations-footer .nominations-footer__wrapper {
+    margin-bottom: 20px;
+    gap: 15px;
+  }
+  .schedule__footer {
+    font-size: 12px;
+  }
+  .nominations-footer .nominations-footer__text {
+    font-size: 12px;
+  }
+  .nominations-footer .nominations-footer__title {
+    font-size: 16px;
+  }
+  .section-title {
+    font-size: 22px !important;
+    margin-bottom: 20px !important;
+  }
+  .container {
+    padding: 0px 10px;
+  }
+  .plate__val {
+    font-size: 20px;
+  }
+  .plate__name {
+    font-size: 16px;
+  }
+  .main-screen__block {
+    padding-bottom: 40px;
+  }
+  .main-screen__descr {
+    font-size: 14px;
+    margin: 30px 0;
+  }
+  .main-screen {
+    padding-top: 20px;
+  }
+
+  .header {
+    padding: 10px 0;
+  }
+  .header__wrapper .logo {
+    height: 33px;
+  }
+  .about-section,
+  .target-event,
+  .tasks-event,
+  .nominations,
+  .schedule,
+  .lax-section,
+  .instruction,
+  .jury-section,
+  .sponsors,
+  .price-section,
+  .faq,
+  .contacts {
+    padding: 50px 0;
+  }
+  .about-section__slider .slide-title {
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+  .about-section__slider .slide-content {
+    font-size: 14px;
+  }
+  .swiper-pagination {
+    margin-top: 30px;
+  }
+
+  .target-event__wrapper .section-title br {
+    display: none;
+  }
+
+  .tasks-event__slider .swiper-slide {
+    padding: 20px;
+    width: 80vw;
+  }
+  .tasks-event__slider .slide-num {
+    font-size: 40px;
+    margin-bottom: 22px;
+  }
+  .tasks-event__slider .slide-text {
+    font-size: 18px;
+  }
+  .tasks-event__wrapper .section-title {
+    text-align: left;
+  }
+}
+
+@media (max-width: 390px) {
+  .about-section,
+  .target-event,
+  .tasks-event,
+  .nominations,
+  .schedule,
+  .lax-section,
+  .instruction,
+  .jury-section,
+  .sponsors,
+  .price-section,
+  .faq,
+  .contacts {
+    padding: 30px 0;
   }
 }
