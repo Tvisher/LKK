@@ -1265,6 +1265,13 @@ body {
   line-height: 150%; /* 27px */
   width: 100%;
   margin-bottom: 20px;
+  &.err {
+    color: red;
+    border-color: red;
+    &::placeholder {
+      color: red;
+    }
+  }
 }
 .area {
   height: 120px;
